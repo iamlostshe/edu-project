@@ -33,3 +33,9 @@ pip install -r requirements.txt
 ```
 python3 main.py
 ```
+
+## TODO
+
+You can see `todo` in code and at this `todo map`:
+
+![todo map graph](res/todo_map.png)

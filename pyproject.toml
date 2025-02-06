@@ -1,0 +1,8 @@
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    # Cyrillic errors
+    "RUF001", "RUF002", "RUF003",
+    # TODO
+    "TD003", "FIX002"
+]

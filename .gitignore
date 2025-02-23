@@ -1,3 +1,14 @@
+# IDE
+.idea
+.vscode
+
+# Python
 __pycache__
 venv
+
+# Logs
 .log
+
+# Data-bases
+db/users.json
+db/courses.json

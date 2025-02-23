@@ -7,7 +7,7 @@ __pycache__
 venv
 
 # Logs
-.log
+*.log
 
 # Data-bases
 db/users.json

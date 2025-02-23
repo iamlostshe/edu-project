@@ -8,7 +8,7 @@ from loguru import logger
 from env_loader import COURSES_DB_FILE_NAME, USERS_DB_FILE_NAME
 
 
-def check_db() -> None:
+async def check_db() -> None:
     """Проверяет наличае файлов баз данных."""
     for db_name in (USERS_DB_FILE_NAME, COURSES_DB_FILE_NAME):
         if not Path(db_name).exists():

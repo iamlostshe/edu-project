@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import asyncio
 
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request  # noqa: F401
 from loguru import logger
 
 from env_loader import HOST, IS_DEBUG, PORT
-from utils.db import check_db
+from utils import db
 
 # Создаём объект flask-приложения
 app = Flask(__name__, template_folder="pages")
@@ -41,8 +41,11 @@ async def main_page(refer: str | None=None) -> str:
 
 
 @app.route("/landing")
-async def landing() -> str:
-    """Render landing."""
+async def landing_page() -> str:
+    """Страница-лендинг.
+
+    Даёт пользователю общее представление о проекте.
+    """
     return render_template("landing.html")
 
 
@@ -52,7 +55,7 @@ async def main() -> None:
     logger.add("edu_project.log")
 
     # Проверяем наличие файлов баз данных
-    await check_db()
+    await db.check_db()
 
     # Запускаем flask-сервер
     app.run(debug=IS_DEBUG, host=HOST, port=PORT)

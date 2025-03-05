@@ -80,12 +80,13 @@ async def main_page(refer: str | None=None) -> str:
     logger.debug("refer: {}", refer)
 
     # Если пользователь зарегистрирован
+    csrf = request.cookies.get("csrftoken")
+    is_auth = db.Users().is_auth(csrf)
 
-    # TODO(@iamlostshe): if <пользователь зарегистрирован>:
-    # Переводим на страницу курсов
-    # await redirect("courses_page")  # noqa: ERA001
+    if is_auth:
+        # Переводим на страницу курсов
+        return redirect("courses_page")
 
-    # else:  # noqa: ERA001
     # Переводим на landing
     return redirect("landing")
 

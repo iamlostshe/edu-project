@@ -66,12 +66,20 @@ class Users:
                 f.truncate()
                 json.dump(data, f, indent=4, ensure_ascii=True)
 
-            logger.debug("Новый пользователь, {}", login)
-            return {"ok": True, "message": ""}
-
         except Exception as e:  # noqa: BLE001
             logger.error("Неизвестная ошибка: {}.", e)
             return {"ok": False, "message": f"Неизвестная ошибка: {e}."}
+
+        else:
+            logger.debug("Новый пользователь, {}", login)
+            return {"ok": True, "message": ""}
+
+
+    def is_auth(self, csrf: str) -> bool:
+        """Проверяет зарегистрирован ли пользователь по csrf-токену."""
+        with Path.open(USERS_DB_FILE_NAME, "r+", encoding="UTF-8") as f:
+            return json.load(f).get(csrf)
+
 
 class Courses:
     """Класс для взаимодействия с курсами."""

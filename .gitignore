@@ -10,5 +10,4 @@ venv
 *.log
 
 # Data-bases
-db/users.json
-db/courses.json
+db

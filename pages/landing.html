@@ -5,61 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>edu-project</title>
-    <style>
-        a {
-            background-color: rgb(66, 58, 51);
-            border-radius: 4px;
-            color: rgb(255, 221, 195);
-        }
-
-        html,
-        body {
-            background-color: rgb(39, 34, 30);
-            color: white;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-        }
-
-        .center {
-            background-color: #1d1b1b;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            max-width: 800px;
-            width: 100%;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            margin: auto;
-        }
-
-        @media (max-width: 600px) {
-            .center {
-                width: 90%;
-            }
-        }
-
-        form,
-        button {
-            background-color: rgb(255, 221, 195);
-            border-radius: 15px;
-            color: black;
-            height: 45px;
-            width: 100%;
-            border: 0;
-        }
-
-        button:hover {
-            background-color: rgb(100, 86, 76);
-            color: black;
-            transform: scale(1.03);
-            transition: background-color 1s, transform 0.3s;
-        }
-    </style>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 
 <body>
@@ -68,17 +14,17 @@
         <p>
             <b>edu-project</b>
             - это проект с
-            <a href="https://github.com/iamlostshe/edu-project target=" target="_blank">открытым исходным кодом</a> (это
+            <a href="https://github.com/iamlostshe/edu-project" target="_blank">открытым исходным кодом</a> (это
             значит, что каждый может
             просматривать, редактировать и использовать <a href="https://github.com/iamlostshe/edu-project"
                 target="_blank">его</a> в
             коммерческих и некоммерческих проектах).
         </p>
         <p>
-            Для начала работы с платформой нажми на кнопку ниже:
+            Для начала работы с платформой нажми на <b>кнопку</b> ниже:
         </p>
         <br>
-        <form action="/pages/reg">
+        <form action="/reg">
             <button>
                 Начать работу с платформой
             </button>

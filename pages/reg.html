@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация | edu-project</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="center">
+        <form id="reg_form" action="/api/reg">
+            <input autocomplete="username" placeholder="Логин" id="login" required>
+            <br>
+            <br>
+            <input autocomplete="password" placeholder="Пароль" type="password" id="password_1" required>
+            <br>
+            <br>
+            <input autocomplete="password" placeholder="Повторите пороль" type="password" id="password_2" required>
+            <br>
+            <br>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <br>
+        <form action="/auth">
+            <button>Авторизация</button>
+        </form>
+    </div>
+    <script src="static/reg.js"></script>
+</body>
+</html>

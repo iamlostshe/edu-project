@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import asyncio
 
-from flask import Flask, redirect, render_template, request  # noqa: F401
+from flask import Flask, jsonify, redirect, render_template, request
 from loguru import logger
 
 from env_loader import HOST, IS_DEBUG, PORT
@@ -12,6 +12,56 @@ from utils import db
 
 # Создаём объект flask-приложения
 app = Flask(__name__, template_folder="pages")
+
+
+@app.route("/api/reg", methods=["POST"])
+async def reg_api() -> str:
+    """Раздел API отвечает за регистрацию пользователя."""
+    # Получаем переданную в json информацию
+    data = request.get_json()
+
+    logger.debug("data {}", data)
+
+    # Логин
+    login = data.get("login")
+    if not login:
+        return jsonify({"ok": False, "message": "Необходимо указать логин."})
+
+    # Пароль
+    password = data.get("password")
+    if not password:
+        return jsonify({"ok": False, "message": "Необходимо указать пароль."})
+
+    # csrf-токен
+    csrf_token = request.cookies.get("csrftoken")
+    if not csrf_token:
+        return jsonify({"ok": False, "message": "Необходимо указать csrf-токен."})
+
+    # Регистрируем пользователя
+    u = db.Users()
+    add_user = await u.add(csrf_token, login, password, refer=None)
+    return jsonify(add_user)
+
+
+# TODO(@iamlostshe): Сделать вход:
+# app.route("/api/auth", methods=["POST"])  # noqa: ERA001
+# async def auth_api() -> str:
+
+
+@app.route("/reg")
+@app.route("/reg?")
+async def reg_page() -> str:
+    """Страница регистрации."""
+    return render_template("reg.html")
+
+
+@app.route("/landing")
+async def landing_page() -> str:
+    """Страница-лендинг.
+
+    Даёт пользователю общее представление о проекте.
+    """
+    return render_template("landing.html")
 
 
 @app.route("/")
@@ -40,22 +90,13 @@ async def main_page(refer: str | None=None) -> str:
     return redirect("landing")
 
 
-@app.route("/landing")
-async def landing_page() -> str:
-    """Страница-лендинг.
-
-    Даёт пользователю общее представление о проекте.
-    """
-    return render_template("landing.html")
-
-
 async def main() -> None:
     """Асинхронная функция для запуска flask-сервер."""
     # Загружаем файл для записи логов
     logger.add("edu_project.log")
 
     # Проверяем наличие файлов баз данных
-    await db.check_db()
+    db.check_db()
 
     # Запускаем flask-сервер
     app.run(debug=IS_DEBUG, host=HOST, port=PORT)

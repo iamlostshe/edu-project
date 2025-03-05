@@ -1,0 +1,109 @@
+/* Установим красивый шрифт */
+@font-face {
+    font-family: "Hack-Regular"; 
+    src: url("/static/fonts/Hack-Regular.ttf") format("truetype"); 
+}
+
+p, h1, h2, h3, h4, h5, h5, h6, button, input {
+    font-family: "Hack-Regular";
+}
+
+html,
+body {
+    background-color: rgb(39, 34, 30);
+    color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Красивые ссылки */
+
+a {
+    background-color: rgb(66, 58, 51);
+    border-radius: 4px;
+    color: rgb(255, 221, 195);
+}
+
+/* Класс для центрирования */
+
+.center {
+    background-color: #1d1b1b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 800px;
+    min-width: 400px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin: auto;
+}
+
+@media (max-width: 600px) {
+    .center {
+        width: 90%;
+    }
+}
+
+/* Настройки формы */
+
+form {
+    width: 100%;
+}
+
+/* Настройки кнопок */
+
+button {
+    background-color: rgb(255, 221, 195);
+    border-radius: 15px;
+    color: black;
+    height: 45px;
+    width: 100%;
+    border: 0;
+}
+
+button:hover {
+    background-color: rgb(100, 86, 76);
+    color: white;
+    transform: scale(1.03);
+    transition: background-color 1s, transform 0.3s;
+}
+
+/* Настройки полей ввода */
+
+input {
+    background-color: rgb(100, 86, 76);
+    border-radius: 15px;
+    color: white;
+    height: 45px;
+    width: 100%;
+    border: 0;
+}
+
+input::placeholder {
+    padding-left: 10px;
+    color: white;
+}
+
+input::selection {
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 221, 195);
+    border: 2;
+}
+
+/* Классы для отображения корректности введённых данных */
+
+.error, .error::selection {
+    border-color: #ff4e4e;
+    border: 2;
+}
+
+.ok, .ok::selection {
+    border-color: #7aff4e;
+    border: 2;
+}
